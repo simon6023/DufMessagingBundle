@@ -1,0 +1,4 @@
+services:
+    duf_messaging.messaging:
+        class: Duf\MessagingBundle\Service\DufMessaging
+        arguments: ['@service_container', '@form.factory', '@router', '@doctrine.orm.entity_manager']

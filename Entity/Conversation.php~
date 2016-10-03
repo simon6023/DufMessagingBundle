@@ -1,0 +1,40 @@
+<?php
+
+namespace Duf\MessagingBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+use Duf\AdminBundle\Entity\DufAdminEntity;
+
+/**
+ * Conversation
+ *
+ * @ORM\Table(name="conversation")
+ * @ORM\Entity(repositoryClass="Duf\MessagingBundle\Entity\Repository\ConversationRepository")
+ */
+class Conversation extends DufAdminEntity
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="subject", type="string", length=255)
+     */
+    private $subject;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Duf\MessagingBundle\Entity\ConversationUser", orphanRemoval=true, mappedBy="conversation", cascade={"persist","remove"})
+     */
+     private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Duf\MessagingBundle\Entity\Message", orphanRemoval=true, mappedBy="conversation", cascade={"persist","remove"})
+     * @ORM\OrderBy({"created_at" = "ASC"})
+     */
+     private $messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Duf\MessagingBundle\Entity\Draft", orphanRemoval=true, mappedBy="conversation", cascade={"persist","remove"})
+     * @ORM\OrderBy({"created_at" = "ASC"})
+     */
+     private $drafts;
+}
