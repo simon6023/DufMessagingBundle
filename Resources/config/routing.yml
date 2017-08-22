@@ -1,3 +1,0 @@
-duf_messaging_homepage:
-    path:     /
-    defaults: { _controller: DufMessagingBundle:Default:index }

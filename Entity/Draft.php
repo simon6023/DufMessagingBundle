@@ -5,6 +5,7 @@ namespace Duf\MessagingBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Duf\AdminBundle\Entity\DufAdminEntity;
+use Duf\AdminBundle\Model\DufAdminUserInterface;
 
 /**
  * Draft
@@ -12,7 +13,7 @@ use Duf\AdminBundle\Entity\DufAdminEntity;
  * @ORM\Table(name="draft")
  * @ORM\Entity(repositoryClass="Duf\MessagingBundle\Entity\Repository\DraftRepository")
  */
-class Draft extends DufAdminEntity
+class Draft extends DufAdminEntity implements DufAdminUserInterface
 {
     /**
      * @var string
@@ -29,8 +30,9 @@ class Draft extends DufAdminEntity
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Duf\AdminBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Duf\AdminBundle\Model\DufAdminUserInterface")
      * @ORM\JoinColumn(nullable=false)
+     * @var DufAdminUserInterface
      */
      protected $author;
 
@@ -108,11 +110,11 @@ class Draft extends DufAdminEntity
     /**
      * Set author
      *
-     * @param \Duf\AdminBundle\Entity\User $author
+     * @param \Duf\AdminBundle\Model\DufAdminUserInterface $author
      *
      * @return Message
      */
-    public function setAuthor(\Duf\AdminBundle\Entity\User $author)
+    public function setAuthor(\Duf\AdminBundle\Model\DufAdminUserInterface $author)
     {
         $this->author = $author;
 
@@ -122,7 +124,7 @@ class Draft extends DufAdminEntity
     /**
      * Get author
      *
-     * @return \Duf\AdminBundle\Entity\User
+     * @return \Duf\AdminBundle\Model\DufAdminUserInterface
      */
     public function getAuthor()
     {

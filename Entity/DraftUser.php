@@ -4,16 +4,18 @@ namespace Duf\MessagingBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Duf\AdminBundle\Entity\DufAdminEntity;
+use Duf\AdminBundle\Model\DufAdminUserInterface;
 
 /**
 * @ORM\Entity()
 */
-class DraftUser extends DufAdminEntity
+class DraftUser extends DufAdminEntity implements DufAdminUserInterface
 {
      /**
-     * @ORM\ManyToOne(targetEntity="Duf\AdminBundle\Entity\User", inversedBy="phonesNbrs", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Duf\AdminBundle\Model\DufAdminUserInterface", inversedBy="phonesNbrs", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      * @ORM\OrderBy({"id" = "ASC"})
+     * @var DufAdminUserInterface
      */
      private $user;
 
@@ -27,11 +29,11 @@ class DraftUser extends DufAdminEntity
     /**
      * Set user
      *
-     * @param \Duf\AdminBundle\Entity\User $user
+     * @param \Duf\AdminBundle\Model\DufAdminUserInterface $user
      *
      * @return DraftUser
      */
-    public function setUser(\Duf\AdminBundle\Entity\User $user = null)
+    public function setUser(\Duf\AdminBundle\Model\DufAdminUserInterface $user = null)
     {
         $this->user = $user;
 
@@ -41,7 +43,7 @@ class DraftUser extends DufAdminEntity
     /**
      * Get user
      *
-     * @return \Duf\AdminBundle\Entity\User
+     * @return \Duf\AdminBundle\Model\DufAdminUserInterface
      */
     public function getUser()
     {

@@ -93,10 +93,13 @@ class DufMessaging
         // add users to conversation
         $this->addUserToConversation($author, $conversation);
 
+        // get user entity class
+        $user_entity_name    = $this->container->get('duf_admin.dufadminconfig')->getDufAdminConfig('user_entity');
+
         if (isset($form_data['users'])) {
             foreach ($form_data['users'] as $user_id) {
                 if ($user_id !== $author->getId()) {
-                    $user_entity    = $this->em->getReference('DufAdminBundle:User', $user_id);
+                    $user_entity    = $this->em->getReference($user_entity_name, $user_id);
                     $conv_user      = $this->addUserToConversation($user_entity, $conversation);
 
                     $this->em->persist($conversation);
